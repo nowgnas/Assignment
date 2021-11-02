@@ -16,16 +16,16 @@ class LinkedList:
 
     # Function to insert a new node at the beginning  
     def push(self, new_data):
+        new_Node = Node(new_data)
+        # todo 새 노드 받아서 새 head 만들기
 
-    # Write code here!
-
-    # Delete the first occurence of key in linked list  
+    # Delete the first occurence of key in linked list
     def deleteNode(self, key):
 
-        # Store head node  
+        # Store head node
         temp = self.head
 
-        # If head node itself holds the key to be deleted  
+        # If head node itself holds the key to be deleted
         if (temp is not None):
             if (temp.data == key):
                 self.head = temp.next
@@ -33,15 +33,15 @@ class LinkedList:
                 return
 
         # Search for the key to be deleted
-        # Keep track of the previous node 'prev.next'  
+        # Keep track of the previous node 'prev.next'
         while (temp is not None):
-        # Write code here!
+            pass
 
-        # If key was not present in linked list  
+        # If key was not present in linked list
         if (temp == None):
             return
 
-        # Unlink the node from linked list  
+        # Unlink the node from linked list
         prev.next = temp.next
 
         temp = None
