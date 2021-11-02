@@ -3,6 +3,9 @@
 def concat_dic(d1, d2, d3):
     d4 = {}
     # Write code here!
+    d4.update(d1)
+    d4.update(d2)
+    d4.update(d3)
     return d4
 
 

@@ -3,7 +3,12 @@
 # Check condition
 def checkCondition(x):
     # Write code here!
-    print("")
+    boolean = True
+    if 100 <= x < 200 or 300 <= x < 350:
+        boolean = True
+    else:
+        boolean = False
+    print(f'{x}:{boolean}')
 
 
 # Test

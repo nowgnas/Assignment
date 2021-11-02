@@ -3,6 +3,12 @@
 def modify_list(l):
     l_new = []
     # Write code here!
+    tmp = ('TMP',)
+    for i in l:
+        if type(i) is tuple:
+            i = i[:-1]
+            i += tmp
+        l_new.append(i)
     return l_new
 
 
