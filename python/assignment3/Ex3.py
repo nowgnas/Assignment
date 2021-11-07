@@ -6,10 +6,12 @@ class Stack:
         self.data = []
 
     def push(self, x):
-        # Write code here!
+        self.data.append(x)
 
     def pop(self):
-        # Write code here!
+        if self.empty():
+            print('No item in Stack')
+        self.data.pop()
 
     def empty(self):
         return len(self.data) == 0
@@ -18,7 +20,7 @@ class Stack:
         return str(self.data)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     stack = Stack()
 
     stack.push(1)

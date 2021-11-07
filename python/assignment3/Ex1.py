@@ -33,19 +33,22 @@ class LinkedList:
         temp = self.head
 
         # If head node itself holds the key to be deleted
-        if (temp is not None):
-            if (temp.data == key):
+        if temp is not None:
+            if temp.data == key:
                 self.head = temp.next
                 temp = None
                 return
 
         # Search for the key to be deleted
         # Keep track of the previous node 'prev.next'
-        while (temp is not None):
-            pass
+        while temp is not None:
+            prev = temp
+            temp = prev.next
+            if temp.data == key:
+                break
 
         # If key was not present in linked list
-        if (temp == None):
+        if temp == None:
             return
 
         # Unlink the node from linked list

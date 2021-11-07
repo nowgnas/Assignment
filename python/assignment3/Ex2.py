@@ -9,10 +9,12 @@ class Queue:
         return self.items == []
 
     def enqueue(self, item):
-        # Write code here!
+        self.items.append(item)
 
     def dequeue(self):
-        # Write code here!
+        if self.size() == 0:
+            print('No item in Queue')
+        self.items.pop(0)
 
     def size(self):
         return len(self.items)
@@ -21,7 +23,7 @@ class Queue:
         return str(self.items)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     queue = Queue()
 
     queue.enqueue(1)
