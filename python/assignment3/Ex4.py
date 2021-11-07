@@ -1,5 +1,6 @@
 # Merge Sort
 
+
 def mergeSort(arr):
     if len(arr) > 1:
         mid = len(arr) // 2  # Finding the mid of the array
@@ -9,7 +10,24 @@ def mergeSort(arr):
         mergeSort(L)  # Sorting the first half
         mergeSort(R)  # Sorting the second half
 
-        # Write code here!
+        l, r, idx = 0, 0, 0
+        while l < len(L) and r < len(R):
+            if L[l] < R[r]:
+                arr[idx] = L[l]
+                l += 1
+                idx += 1
+            else:
+                arr[idx] = R[r]
+                r += 1
+                idx += 1
+        while l < len(L):
+            arr[idx] = L[l]
+            l += 1
+            idx += 1
+        while r < len(R):
+            arr[idx] = R[r]
+            r += 1
+            idx += 1
 
 
 # Code to print the list
