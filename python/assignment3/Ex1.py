@@ -18,6 +18,13 @@ class LinkedList:
     def push(self, new_data):
         new_Node = Node(new_data)
         # todo 새 노드 받아서 새 head 만들기
+        if self.head is None:
+            self.head = new_Node
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_Node
 
     # Delete the first occurence of key in linked list
     def deleteNode(self, key):
