@@ -111,9 +111,9 @@ def distance_train_test(train, test):
     for tr in train:
         for idx in range(len(tr) - 1):
             dist += (tr[idx] - test[idx]) ** 2
-        dist_lst.append((tr, sqrt(dist)))
+        dist_lst.append([tr[-1], sqrt(dist)])
     dist_out = sorted(dist_lst, key=lambda x: x[1])
-    return dist_lst
+    return dist_out[0]
 
 
 # KNN 알고리즘 구현
@@ -121,13 +121,10 @@ def knn(train, test, num_neighbors):
     pred_results = list()
     for row in test:
         distance = distance_train_test(train, row)
-        # Write code here!
-        # output을 knn을 통해 계산!
-        # todo: knn 다시보고 코드짜기
-
-        output = [distance[:num_neighbors]]
+        # todo 일단은 출력은 나오는데 다시 해보기
+        output = distance[0]
         pred_results.append(output)
-    return (pred_results)
+    return pred_results
 
 
 if __name__ == "__main__":
