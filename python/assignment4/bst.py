@@ -110,9 +110,23 @@ class BinarySearchTree:
     def min_key(self):
         """Return the minimum key"""
         # todo: Write code here!
-        return 0
+        rNode = self.root
+        while True:
+            if rNode is None:
+                return None
+            if rNode.left:
+                rNode = rNode.left
+            else:
+                return rNode.key
 
     def max_key(self):
         """Return the maximum key"""
         # todo: Write code here!
-        return 0
+        rNode = self.root
+        while True:
+            if rNode is None:
+                return None
+            if rNode.right:
+                rNode = rNode.right
+            else:
+                return rNode.key
