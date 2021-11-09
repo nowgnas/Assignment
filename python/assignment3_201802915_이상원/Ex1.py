@@ -17,7 +17,6 @@ class LinkedList:
     # Function to insert a new node at the beginning  
     def push(self, new_data):
         new_Node = Node(new_data)
-        # todo 새 노드 받아서 새 head 만들기
         if self.head is None:
             self.head = new_Node
         else:
