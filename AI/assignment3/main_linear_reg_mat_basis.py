@@ -4,6 +4,7 @@ import numpy as np
 from numpy.linalg import inv
 import matplotlib.pyplot as plt
 
+
 if __name__ == '__main__':
     # STEP 1: SET DATA ------------------------------------------------------------------------------------------------#
     data_x = np.linspace(1.0, 10.0, 100)[:, np.newaxis]
@@ -20,18 +21,19 @@ if __name__ == '__main__':
     x_train = data_x[order[portion:]]
     y_train = data_y[order[portion:]]
 
-
     # STEP 2: DO PREDICTION -------------------------------------------------------------------------------------------#
     # Nonlinear basis function
     def apply_exp_basis(X, s=0.5):
         # Write code here (1)!
+
         Phi = np.copy(X)  # 코드 작성시 이부분을 지우세요!
         return Phi
-
 
     phi_train = apply_exp_basis(x_train)
 
     # Write code here (2)!
+
+
     # Find theta_hat.
     theta_hat = np.ones((2, 1))  # 코드 작성시 이부분을 지우세요!
 
@@ -44,3 +46,6 @@ if __name__ == '__main__':
     ax.plot(x_test[:, 1], y_pred, 'ro', label='Prediction')
     plt.legend()
     plt.show()
+
+
+
