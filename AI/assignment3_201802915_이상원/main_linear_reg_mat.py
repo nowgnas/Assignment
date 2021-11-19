@@ -28,7 +28,6 @@ if __name__ == '__main__':
     x_inv = inv(X_X_T)
     x_inv_X = np.matmul(x_inv, x_T)
     theta_hat = np.matmul(x_inv_X, y_train)
-
     # Find theta_hat.
     y_pred = np.matmul(x_test, theta_hat)
 
