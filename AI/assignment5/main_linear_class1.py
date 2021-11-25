@@ -63,9 +63,35 @@ if __name__ == '__main__':
     def get_gradient(theta, x, y):
         # Gradient 구하는 함수
         # Write code here!
-        gradient = np.zeros((3, 1))  # 코드 작성시 이 부분을 지우세요
-        loss = 1000.0  # 코드 작성시 이 부분을 지우세요
-        return gradient, loss
+        print(np.shape(theta))
+
+        theta_T = np.transpose(theta)
+        x_T = np.transpose(x)
+        y_T = np.transpose(y)
+
+        _firstTerm = np.matmul(theta_T, x_T)
+        _firstTerm = np.matmul(_firstTerm, x)
+        _firstTerm = np.matmul(_firstTerm, theta)
+
+        _secondTerm = np.matmul(y_T, x)
+        _secondTerm = np.matmul(_secondTerm, theta)
+
+        _thirdTerm = np.matmul(y_T, y)
+
+        _loss = _firstTerm - (2 * _secondTerm) + _thirdTerm
+        loss = _loss / len(x)
+
+        _gradFirstTerm = np.matmul(theta_T, x_T)
+        _gradFirstTerm = np.matmul(_gradFirstTerm, x)
+
+        _gradSecondTerm = np.matmul(y_T, x)
+
+        gradient = (_gradFirstTerm - _gradSecondTerm) / len(x)
+        print(np.shape(gradient))
+
+        # grad = np.ones((3, 1))
+
+        return gradient, loss[0][0]
 
 
     def step(d, thres=0.5):
@@ -89,7 +115,8 @@ if __name__ == '__main__':
         theta_hat_new = theta_hat - alpha * gradient  # theta update
 
         # Stopping Condition
-        if (np.sum(abs(theta_hat_new - theta_hat)) < tolerance) or (iter_cnt > 30000):
+        if (np.sum(abs(theta_hat_new - theta_hat)) < tolerance) or (
+                iter_cnt > 30000):
             print("Converged.")
             is_stop = True
         else:
