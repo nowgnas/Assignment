@@ -82,9 +82,6 @@ if __name__ == '__main__':
         loss = _loss / len(x)
 
         _gradFirstTerm = np.matmul(theta_T, x_T)
-        a = np.matmul(theta.T, x.T)
-        print(np.shape(_gradFirstTerm))
-        print(np.shape(a))
         _gradFirstTerm = np.matmul(_gradFirstTerm, x)
 
         _gradSecondTerm = np.matmul(y_T, x)
