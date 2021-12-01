@@ -12,8 +12,8 @@ if __name__ == '__main__':
 
     is_difficult = "difficult" in filename2read
 
-
     # STEP 2: SET PLOT-FUNCTION ---------------------------------------------------------------------------------------#
+
     def plot_data(x, y, theta, iter):
         idx_set = []
         marker_set = ['o', 'v']
@@ -23,7 +23,8 @@ if __name__ == '__main__':
         x1max = np.amax(x[:, 2])
         x1range = np.linspace(x0min, x0max, num=100, endpoint=True)
         if len(theta) > 0:
-            x2range = -theta[1] / theta[2] * (x1range + (theta[0] - 0.5) / theta[1])
+            x2range = -theta[1] / theta[2] * \
+                (x1range + (theta[0] - 0.5) / theta[1])
         else:
             x2range = []
 
@@ -49,17 +50,17 @@ if __name__ == '__main__':
         # 그림 저장
         data_type = "diff" if is_difficult else "simple"
         if len(theta) > 0:
-            filename2save = "./linear_class1_{:s}_{:d}.png".format(data_type, iter)
+            filename2save = "./linear_class1_{:s}_{:d}.png".format(
+                data_type, iter)
         else:
             filename2save = "./data_{:s}.png".format(data_type)
         plt.savefig(filename2save)
         plt.close()
 
-
     plot_data(x, y, [], 0)  # Plot
 
-
     # STEP 3: Do Gradient ---------------------------------------------------------------------------------------------#
+
     def get_gradient(theta, x, y):
         # Gradient 구하는 함수
         # Write code here!
@@ -95,7 +96,6 @@ if __name__ == '__main__':
 
         return gradient.T, loss[0][0]
 
-
     def step(d, thres=0.5):
         # Step 함수: thres보다 크면 1, 아니면 0
         dnew = np.zeros_like(d)
@@ -105,7 +105,6 @@ if __name__ == '__main__':
             dnew[idx_pos, :] = 1.0
         return dnew
 
-
     theta_hat = np.random.randn(3, 1)  # theta_hat 초기값을 random하게 정한다.
     alpha = 0.001
     tolerance = 1e-5
@@ -113,7 +112,8 @@ if __name__ == '__main__':
     # Perform Gradient Descent
     iter_cnt = 1  # Iteration count
     while True:
-        gradient, loss = get_gradient(theta_hat, x, y)  # 매 iteration마다 grad와 loss계산
+        # 매 iteration마다 grad와 loss계산
+        gradient, loss = get_gradient(theta_hat, x, y)
         theta_hat_new = theta_hat - alpha * gradient  # theta update
 
         # Stopping Condition
