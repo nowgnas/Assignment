@@ -63,7 +63,6 @@ if __name__ == '__main__':
     def get_gradient(theta, x, y):
         # Gradient 구하는 함수
         # Write code here!
-        print(np.shape(theta))
 
         theta_T = np.transpose(theta)
         x_T = np.transpose(x)
@@ -81,17 +80,20 @@ if __name__ == '__main__':
         _loss = _firstTerm - (2 * _secondTerm) + _thirdTerm
         loss = _loss / len(x)
 
-        _gradFirstTerm = np.matmul(theta_T, x_T)
-        _gradFirstTerm = np.matmul(_gradFirstTerm, x)
+        # _gradFirstTerm = np.matmul(theta_T, x_T)
+        # _gradFirstTerm = np.matmul(_gradFirstTerm, x)
+        #
+        # _gradSecondTerm = np.matmul(y_T, x)
 
-        _gradSecondTerm = np.matmul(y_T, x)
+        # gradient = _gradFirstTerm - _gradSecondTerm
+        _gradient = np.matmul(theta.T, x.T)
+        _gradient = np.matmul(_gradient, x)
 
-        gradient = (_gradFirstTerm - _gradSecondTerm) / len(x)
-        print(np.shape(gradient))
+        print(np.shape(_gradient / len(x)))
 
         # grad = np.ones((3, 1))
 
-        return gradient, loss[0][0]
+        return gradient.T, loss[0][0]
 
 
     def step(d, thres=0.5):
