@@ -12,6 +12,7 @@ if __name__ == '__main__':
 
     is_difficult = "difficult" in filename2read
 
+
     # STEP 2: SET PLOT-FUNCTION ---------------------------------------------------------------------------------------#
 
     def plot_data(x, y, theta, iter):
@@ -24,7 +25,7 @@ if __name__ == '__main__':
         x1range = np.linspace(x0min, x0max, num=100, endpoint=True)
         if len(theta) > 0:
             x2range = -theta[1] / theta[2] * \
-                (x1range + (theta[0] - 0.5) / theta[1])
+                      (x1range + (theta[0] - 0.5) / theta[1])
         else:
             x2range = []
 
@@ -57,7 +58,9 @@ if __name__ == '__main__':
         plt.savefig(filename2save)
         plt.close()
 
+
     plot_data(x, y, [], 0)  # Plot
+
 
     # STEP 3: Do Gradient ---------------------------------------------------------------------------------------------#
 
@@ -90,11 +93,10 @@ if __name__ == '__main__':
         _gradient = np.matmul(theta.T, x.T)
         _gradient = np.matmul(_gradient, x)
 
-        print(np.shape(_gradient / len(x)))
-
         # grad = np.ones((3, 1))
 
-        return gradient.T, loss[0][0]
+        return _gradient.T, loss[0][0]
+
 
     def step(d, thres=0.5):
         # Step 함수: thres보다 크면 1, 아니면 0
@@ -104,6 +106,7 @@ if __name__ == '__main__':
         if len(idx_pos) > 0:
             dnew[idx_pos, :] = 1.0
         return dnew
+
 
     theta_hat = np.random.randn(3, 1)  # theta_hat 초기값을 random하게 정한다.
     alpha = 0.001
