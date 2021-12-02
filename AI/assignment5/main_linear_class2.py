@@ -87,14 +87,21 @@ if __name__ == '__main__':
     def compute_loss(x, y, theta):
         # Loss 계산
         # Write code here!
-        loss = 1000.0  # 코드 작성시 이 부분을 지우세요
-        return loss
+        _firstTerm = (-1 * y) * np.log(compute_h(x, theta))
+        _secondTerm = (1 - y) * np.log(1 - compute_h(x, theta))
+        loss = _firstTerm - _secondTerm
+
+        return np.mean(loss)
 
 
     def compute_grad(x, y, theta):
         # Gradient 계산
         # Write code here!
-        gradient = np.zeros((3, 1))  # 코드 작성시 이 부분을 지우세요
+        x_theta = np.matmul(x, theta)
+        x_theta_sub_y = x_theta - y
+        x_xTheta = np.matmul(x.T, x_theta_sub_y)
+        gradient = x_xTheta / len(x)
+
         return gradient
 
 
