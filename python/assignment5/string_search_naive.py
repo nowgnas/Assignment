@@ -2,18 +2,11 @@
 
 def naive_search(str_pat, str_txt):
     # Write code here!
-    pat_length = len(str_pat)
-    txt_length = len(str_txt)
-
-    for idx in range(txt_length - pat_length):
-        for _idx in range(pat_length):
-            if str_pat[idx + _idx] == str_pat[_idx]:
-                _idx += 1
-            else:
-                print(_idx)
-                print(idx)
-                break
-        break
+    answer = []
+    for i in range(len(str_txt) - len(str_pat) + 1):
+        if str_txt[i:i + len(str_pat)] == str_pat:
+            answer.append(i)
+    print(answer)
 
 
 if __name__ == '__main__':
