@@ -71,6 +71,7 @@ if __name__ == '__main__':
         idx_cluster_old = np.copy(idx_cluster)
 
         # Centroid와 얼마나 가까운지를 기준으로 cluster를 구한다
+        print(f'p shape: {np.shape(p)} p_cluster {p_cluster}')
         idx_cluster = get_idx_cluster(p, p_cluster)
 
         # 새로운 cluster의 중심값을 업데이트
