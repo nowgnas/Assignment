@@ -21,15 +21,48 @@ if __name__ == '__main__':
     K = len(num)
 
 
+    def euclidean_distance(dot1, dot2):
+        x_diff = dot1[0] - dot2[0]
+        y_diff = dot1[1] - dot2[1]
+        times = x_diff ** 2 + y_diff ** 2
+        return np.sqrt(times)
+
+
     def get_idx_cluster(p, p_cluster):
         # Write code here!
-        idx_cluster = np.zeros(N)  # 이 부분을 지우고 작성하세요!
+        idx_cluster = []
+        for dot in p:
+            distanceList = []
+            for _cluster in p_cluster:
+                distanceList.append(euclidean_distance(dot, _cluster))
+            idx_cluster.append(distanceList.index(min(distanceList)))
+
         return idx_cluster
 
 
     def update_p_cluster(p, p_cluster, idx_cluster):
         # Write code here!
-        return p_cluster
+        numOfCluster = len(p_cluster)
+        zeros = [0, 0]
+        new_p_cluster = []
+        for i in range(numOfCluster):
+            new_p_cluster.append(zeros)
+
+        for dot, cluster in zip(p, idx_cluster):
+            new_p_cluster[cluster] = dot + new_p_cluster[cluster]
+
+        out_cluster = []
+        newX = 0
+        newY = 0
+        for i in range(numOfCluster):
+            idx = idx_cluster.count(i)
+            if idx == 0:
+                out_cluster.append([0, 0])
+            else:
+                avg = [new_p_cluster[i][0] / idx, new_p_cluster[i][1] / idx]
+                out_cluster.append(avg)
+
+        return out_cluster
 
 
     def plot_data(p, p_cluster, idx_cluster, dir_pic, iter):
@@ -71,7 +104,6 @@ if __name__ == '__main__':
         idx_cluster_old = np.copy(idx_cluster)
 
         # Centroid와 얼마나 가까운지를 기준으로 cluster를 구한다
-        print(f'p shape: {np.shape(p)} p_cluster {p_cluster}')
         idx_cluster = get_idx_cluster(p, p_cluster)
 
         # 새로운 cluster의 중심값을 업데이트
