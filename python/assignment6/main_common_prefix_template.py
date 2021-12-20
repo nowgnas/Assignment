@@ -17,23 +17,29 @@ class Trie:
 
     # Construct trie
     def construct(self, arr):
+        print(f'arr string :{arr}')
         for i in range(len(arr)):
             self.insert(arr[i])
+            print(f'word: {arr[i]}')
+            print('----------------')
 
     def insert(self, key):
+        print(f'key: {key}')
         node = self.root
+        print(f'node : {node.char} is empty??')
         for char in key:
             if char not in node.children:
                 node.children[char] = Node(char)
             node = node.children[char]  # 다음 노드로 이동
+        print(f'node out :{node.char}')
         node.is_leaf = True
 
     # Perform walk on trie and return longest common prefix
     def find_common_prefix(self):
         node = self.root
         prefix = ""
-
-        # Write code here!
+        print(node.children)
+        print(node.children[0])
 
         return prefix
 
