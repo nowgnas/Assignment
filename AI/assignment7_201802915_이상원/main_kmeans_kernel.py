@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     def get_idx_cluster(p, idx_cluster):
         # Write code here!
-        print(len(p))
+        print(p)
         print(len(idx_cluster))
         for _p, _idx in zip(p, idx_cluster):
             pass

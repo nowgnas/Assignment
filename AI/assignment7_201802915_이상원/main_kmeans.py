@@ -42,27 +42,37 @@ if __name__ == '__main__':
 
     def update_p_cluster(p, p_cluster, idx_cluster):
         # Write code here!
-        numOfCluster = len(p_cluster)
-        zeros = [0, 0]
-        new_p_cluster = []
-        for i in range(numOfCluster):
-            new_p_cluster.append(zeros)
+        # numOfCluster = len(p_cluster)
+        # zeros = [0, 0]
+        # new_p_cluster = []
+        # for i in range(numOfCluster):
+        #     new_p_cluster.append(zeros)
+        #
+        # for dot, cluster in zip(p, idx_cluster):
+        #     new_p_cluster[cluster] = dot + new_p_cluster[cluster]
+        #
+        # out_cluster = []
+        # newX = 0
+        # newY = 0
+        # for i in range(numOfCluster):
+        #     idx = idx_cluster.count(i)
+        #     if idx == 0:
+        #         out_cluster.append([0, 0])
+        #     else:
+        #         avg = [new_p_cluster[i][0] / idx, new_p_cluster[i][1] / idx]
+        #         out_cluster.append(avg)
+        num_k = np.shape(p_cluster)[0]
 
-        for dot, cluster in zip(p, idx_cluster):
-            new_p_cluster[cluster] = dot + new_p_cluster[cluster]
+        for i in range(num_k):
+            idx_tmp = np.where(idx_cluster == i)
+            idx_tmp = idx_tmp[0]
 
-        out_cluster = []
-        newX = 0
-        newY = 0
-        for i in range(numOfCluster):
-            idx = idx_cluster.count(i)
-            if idx == 0:
-                out_cluster.append([0, 0])
-            else:
-                avg = [new_p_cluster[i][0] / idx, new_p_cluster[i][1] / idx]
-                out_cluster.append(avg)
+            if len(idx_tmp) > 0:
+                p_sel = p[idx_tmp, :]
+                p_cluster_new = np.mean(p_sel, axis=0)
+                p_cluster[i, :] = p_cluster_new
 
-        return out_cluster
+        return p_cluster
 
 
     def plot_data(p, p_cluster, idx_cluster, dir_pic, iter):
